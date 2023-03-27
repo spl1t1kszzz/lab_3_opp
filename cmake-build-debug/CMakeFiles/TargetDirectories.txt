@@ -1,0 +1,3 @@
+/Users/nikson/CLionProjects/lab_3_opp/cmake-build-debug/CMakeFiles/lab_3_opp.dir
+/Users/nikson/CLionProjects/lab_3_opp/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/nikson/CLionProjects/lab_3_opp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
