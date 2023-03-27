@@ -51,21 +51,23 @@ int main(int argc, char** argv) {
     int grid_rank;
     int row_rank;
     int col_rank;
-    int* row_roots = new int[p_1];
-    int row_roots_index = 0;
+    // Creating a proc grid
     MPI_Dims_create(size, 2, dims);
     MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, reorder, &grid_comm);
     MPI_Comm_rank(grid_comm, &grid_rank);
     MPI_Cart_coords(grid_comm, grid_rank, 2, coords);
-    MPI_Comm_rank(grid_comm, &grid_rank);
 
+
+    // Splitting processes for rows and columns
     MPI_Comm_split(grid_comm, coords[0], rank, &row_comm);
     MPI_Comm_split(grid_comm, coords[1], rank, &col_comm);
-
     MPI_Comm_rank(row_comm, &row_rank);
     MPI_Comm_rank(col_comm, &col_rank);
-    cout << "WORLD RANK: " << rank << ", ROW RANK: " << row_rank << ", COL RANK: " << col_rank << endl;
+    cout << "WORLD RANK: " << rank << ", ROW RANK: " << coords[1] << ", COL RANK: " << col_rank << endl;
 
+
+
+    // n3 / p2
     MPI_Comm_free(&row_comm);
     MPI_Comm_free(&grid_comm);
     MPI_Finalize();
