@@ -65,6 +65,11 @@ int main(int argc, char** argv) {
     MPI_Comm_rank(col_comm, &col_rank);
     cout << "WORLD RANK: " << rank << ", ROW RANK: " << coords[1] << ", COL RANK: " << col_rank << endl;
 
+    MPI_Datatype matrix_column, matrix_column_resized;
+    MPI_Type_vector(n_2, n_3 / p_2, n_2, MPI_INT, &matrix_column);
+    MPI_Type_commit(&matrix_column);
+    MPI_Type_create_resized(matrix_column,0, (int) (n_3 / p_2 * sizeof(int)), &matrix_column_resized);
+    MPI_Type_commit(&matrix_column_resized);
 
 
     // n3 / p2
