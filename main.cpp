@@ -40,9 +40,12 @@ int main(int argc, char** argv) {
     if (rank == 0) {
         create_matrix(a, n_1, n_2);
         create_matrix(b, n_2, n_3);
-       // print_matrix(a, n_1, n_2);
+        //print_matrix(a, n_1, n_2);
         //print_matrix(b, n_2, n_3);
     }
+    int* a_part = new int[n_2 * (n_1 / p_1)];
+
+
     MPI_Comm grid_comm, row_comm, col_comm;
     int dims[2] = {0, 0};
     int periods[2] = {0, 0};
@@ -57,27 +60,40 @@ int main(int argc, char** argv) {
     MPI_Comm_rank(grid_comm, &grid_rank);
     MPI_Cart_coords(grid_comm, grid_rank, 2, coords);
 
-
     // Splitting processes for rows and columns
     MPI_Comm_split(grid_comm, coords[0], rank, &row_comm);
     MPI_Comm_split(grid_comm, coords[1], rank, &col_comm);
     MPI_Comm_rank(row_comm, &row_rank);
     MPI_Comm_rank(col_comm, &col_rank);
-    cout << "WORLD RANK: " << rank << ", ROW RANK: " << coords[1] << ", COL RANK: " << col_rank << endl;
+    cout << "WORLD RANK: " << rank << ", ROW RANK: " << row_rank << ", COL RANK: " << col_rank << endl;
 
     MPI_Datatype matrix_column, matrix_column_resized;
     MPI_Type_vector(n_2, n_3 / p_2, n_2, MPI_INT, &matrix_column);
     MPI_Type_commit(&matrix_column);
     MPI_Type_create_resized(matrix_column,0, (int) (n_3 / p_2 * sizeof(int)), &matrix_column_resized);
     MPI_Type_commit(&matrix_column_resized);
+    if (coords[1] == 0) {
+        MPI_Scatter(a, n_2 * (n_1 / p_1), MPI_INT, a_part, n_2 * (n_1 / p_1), MPI_INT, 0, col_comm);
 
-
+    }
+    if (coords[1] == 0) {
+        for (int i = 0; i < n_2; ++i) {
+            cout << a_part[i] << ' ';
+        }
+        cout << endl;
+    }
     // n3 / p2
+    MPI_Type_free(&matrix_column);
+    MPI_Type_free(&matrix_column_resized);
     MPI_Comm_free(&row_comm);
     MPI_Comm_free(&grid_comm);
+    MPI_Comm_free(&col_comm);
+    MPI_Barrier(MPI_COMM_WORLD);
+    std::free(a);
+    std::free(b);
+    std::free(a_part);
     MPI_Finalize();
     return 0;
 }
-
 
 
