@@ -40,10 +40,7 @@ int main(int argc, char **argv) {
     if (rank == 0) {
         create_matrix(a, n_1, n_2);
         create_matrix(b, n_2, n_3);
-        // print_matrix(a, n_1, n_2);
-        // print_matrix(b, n_2, n_3);
     }
-
 
     MPI_Comm grid_comm, row_comm, col_comm;
     int dims[2] = {0, 0};
@@ -67,12 +64,7 @@ int main(int argc, char **argv) {
 
     if (coords[1] == 0) {
         MPI_Scatter(a.data(), n_1 / dims[0] * n_2, MPI_INT, a_part.data(), n_1 / dims[0] * n_2, MPI_INT, 0, col_comm);
-//        for (int i = 0; i < n_1 / dims[0] * n_2; ++i) {
-//            std::cout << a_part[i] << ' ';
-//        }
-//        cout << endl;
         MPI_Barrier(col_comm);
-
     }
     MPI_Bcast(a_part.data(), n_1 / dims[0] * n_2, MPI_INT, 0, row_comm);
 
@@ -80,7 +72,6 @@ int main(int argc, char **argv) {
     MPI_Comm_rank(row_comm, &row_rank);
     MPI_Comm_rank(col_comm, &col_rank);
     MPI_Barrier(MPI_COMM_WORLD);
-    //cout << "WORLD RANK: " << rank << ", ROW RANK: " << row_rank << ", COL RANK: " << col_rank << endl;
 
     MPI_Datatype matrix_column, matrix_column_resized;
     MPI_Datatype matrix_result_column, matrix_result_column_resized;
