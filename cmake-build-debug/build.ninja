@@ -46,8 +46,8 @@ cmake_ninja_workdir = /Users/nikson/CLionProjects/lab_3_opp/cmake-build-debug/
 
 build cmake_object_order_depends_target_lab_3_opp: phony || CMakeFiles/lab_3_opp.dir
 
-build CMakeFiles/lab_3_opp.dir/main2.cpp.o: CXX_COMPILER__lab_3_opp_Debug /Users/nikson/CLionProjects/lab_3_opp/main2.cpp || cmake_object_order_depends_target_lab_3_opp
-  DEP_FILE = CMakeFiles/lab_3_opp.dir/main2.cpp.o.d
+build CMakeFiles/lab_3_opp.dir/main.cpp.o: CXX_COMPILER__lab_3_opp_Debug /Users/nikson/CLionProjects/lab_3_opp/main.cpp || cmake_object_order_depends_target_lab_3_opp
+  DEP_FILE = CMakeFiles/lab_3_opp.dir/main.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -fcolor-diagnostics -std=gnu++2b
   OBJECT_DIR = CMakeFiles/lab_3_opp.dir
   OBJECT_FILE_DIR = CMakeFiles/lab_3_opp.dir
@@ -60,7 +60,7 @@ build CMakeFiles/lab_3_opp.dir/main2.cpp.o: CXX_COMPILER__lab_3_opp_Debug /Users
 #############################################
 # Link the executable lab_3_opp
 
-build lab_3_opp: CXX_EXECUTABLE_LINKER__lab_3_opp_Debug CMakeFiles/lab_3_opp.dir/main2.cpp.o
+build lab_3_opp: CXX_EXECUTABLE_LINKER__lab_3_opp_Debug CMakeFiles/lab_3_opp.dir/main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk
   OBJECT_DIR = CMakeFiles/lab_3_opp.dir
   POST_BUILD = :
