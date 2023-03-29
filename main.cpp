@@ -28,15 +28,14 @@ void create_matrix(std::vector<int> &matrix, int size_1, int size_2) {
     }
 }
 
-using namespace std;
 
 int main(int argc, char **argv) {
     int rank, size;
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    vector<int> a(n_1 * n_2);
-    vector<int> b(n_2 * n_3);
+    std::vector<int> a(n_1 * n_2);
+    std::vector<int> b(n_2 * n_3);
     if (rank == 0) {
         create_matrix(a, n_1, n_2);
         create_matrix(b, n_2, n_3);
@@ -60,7 +59,7 @@ int main(int argc, char **argv) {
     MPI_Comm_split(grid_comm, coords[0], rank, &row_comm);
     MPI_Comm_split(grid_comm, coords[1], rank, &col_comm);
 
-    vector<int> a_part(n_1 / dims[0] * n_2);
+    std::vector<int> a_part(n_1 / dims[0] * n_2);
 
     if (coords[1] == 0) {
         MPI_Scatter(a.data(), n_1 / dims[0] * n_2, MPI_INT, a_part.data(), n_1 / dims[0] * n_2, MPI_INT, 0, col_comm);
@@ -87,7 +86,7 @@ int main(int argc, char **argv) {
                             &matrix_result_column_resized);
     MPI_Type_commit(&matrix_result_column_resized);
 
-    vector<int> b_part(n_3 / dims[1] * n_2);
+    std::vector<int> b_part(n_3 / dims[1] * n_2);
     MPI_Barrier(MPI_COMM_WORLD);
     if (coords[0] == 0) {
         MPI_Scatter(b.data(), 1, matrix_column_resized, b_part.data(), n_3 / dims[1] * n_2, MPI_INT, 0, row_comm);
