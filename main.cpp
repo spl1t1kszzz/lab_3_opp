@@ -8,15 +8,14 @@ constexpr int n_3 = 2100;
 
 std::vector<int> matrix_mult(std::vector<int> &a, std::vector<int> &b, int a_size_1, int b_size_2, int a_size_2) {
     std::vector<int> c(a_size_1 * b_size_2);
-    for (int i = 0; i < a_size_1; ++i) {
-        for (int j = 0; j < b_size_2; ++j) {
-            int sum = 0;
-            for (int k = 0; k < a_size_2; ++k) {
-                sum += a[i * a_size_2 + k] * b[k * b_size_2 + j];
+    for (int i = 0; i < a_size_1; i++) {
+        for (int k = 0; k < a_size_2; k++) {
+            for (int j = 0; j < b_size_2; j++) {
+                c[i * b_size_2 + j] += a[i * a_size_2 + k] * b[k * b_size_2 + j];
             }
-            c[i * b_size_2 + j] = sum;
         }
     }
+
     return c;
 }
 
