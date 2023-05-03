@@ -1,0 +1,44 @@
+The MPI test test_mpi for CXX in mode normal failed to compile with the following output:
+Change Dir: /Users/nikson/CLionProjects/lab_3_opp/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-1KvYin
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_9a184 && [1/2] Building CXX object CMakeFiles/cmTC_9a184.dir/test_mpi.cpp.o
+clang: warning: -lblas: 'linker' input unused [-Wunused-command-line-argument]
+[2/2] Linking CXX executable cmTC_9a184
+FAILED: cmTC_9a184 
+: && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -lblas  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Wl,-commons,use_dylibs CMakeFiles/cmTC_9a184.dir/test_mpi.cpp.o -o cmTC_9a184  /usr/local/Cellar/mpich/4.1.1_1/lib/libmpicxx.dylib  /usr/local/Cellar/mpich/4.1.1_1/lib/libmpi.dylib  /usr/local/Cellar/mpich/4.1.1_1/lib/libpmpi.dylib && :
+ld: warning: ignoring file /usr/local/Cellar/mpich/4.1.1_1/lib/libmpi.dylib, building for macOS-arm64 but attempting to link with file built for macOS-x86_64
+ld: warning: ignoring file /usr/local/Cellar/mpich/4.1.1_1/lib/libpmpi.dylib, building for macOS-arm64 but attempting to link with file built for macOS-x86_64
+ld: warning: ignoring file /usr/local/Cellar/mpich/4.1.1_1/lib/libmpicxx.dylib, building for macOS-arm64 but attempting to link with file built for macOS-x86_64
+Undefined symbols for architecture arm64:
+  "_MPI_Finalize", referenced from:
+      _main in test_mpi.cpp.o
+  "_MPI_Init", referenced from:
+      _main in test_mpi.cpp.o
+ld: symbol(s) not found for architecture arm64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for CXX in mode normal failed to compile with the following output:
+Change Dir: /Users/nikson/CLionProjects/lab_3_opp/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-BcCvL1
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_89de5 && [1/2] Building CXX object CMakeFiles/cmTC_89de5.dir/test_mpi.cpp.o
+clang: warning: -lblas: 'linker' input unused [-Wunused-command-line-argument]
+[2/2] Linking CXX executable cmTC_89de5
+FAILED: cmTC_89de5 
+: && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -lblas  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Wl,-commons,use_dylibs CMakeFiles/cmTC_89de5.dir/test_mpi.cpp.o -o cmTC_89de5  /usr/local/Cellar/mpich/4.1.1_1/lib/libmpicxx.dylib  /usr/local/Cellar/mpich/4.1.1_1/lib/libmpi.dylib  /usr/local/Cellar/mpich/4.1.1_1/lib/libpmpi.dylib && :
+ld: warning: ignoring file /usr/local/Cellar/mpich/4.1.1_1/lib/libmpicxx.dylib, building for macOS-arm64 but attempting to link with file built for macOS-x86_64
+ld: warning: ignoring file /usr/local/Cellar/mpich/4.1.1_1/lib/libpmpi.dylib, building for macOS-arm64 but attempting to link with file built for macOS-x86_64
+ld: warning: ignoring file /usr/local/Cellar/mpich/4.1.1_1/lib/libmpi.dylib, building for macOS-arm64 but attempting to link with file built for macOS-x86_64
+Undefined symbols for architecture arm64:
+  "_MPI_Finalize", referenced from:
+      _main in test_mpi.cpp.o
+  "_MPI_Init", referenced from:
+      _main in test_mpi.cpp.o
+ld: symbol(s) not found for architecture arm64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+
